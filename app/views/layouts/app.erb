@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="/img/wlogo.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="/spectre/spectre.min.css" />
+  <link rel="stylesheet" href="/spectre/spectre-exp.min.css" />
+  <link rel="stylesheet" href="/spectre/spectre-icons.min.css" />
+
+
+  <title>
+      道杂货－Simon在打磨博客
+
+  </title>
+</head>
+
+  <body>
+
+    <div class="container">
+      <header class="navbar">
+        <section class="navbar-section">
+          <a href="#" class="navbar-brand mr-10">初订</a>
+          <a href="#" class="btn btn-link">标签云</a>
+        </section>
+        <section class="navbar-section">
+          <div class="input-group input-inline">
+            <input class="form-input" type="text" placeholder="搜索" />
+            <button class="btn btn-primary input-group-btn">搜索</button>
+          </div>
+        </section>
+      </header>
+      <div class="columns">
+
+        <div class="column col-3">
+          <ul class="menu">
+            <!-- menu header text -->
+            <li class="divider" data-content="LINKS">
+            </li>
+            <!-- menu item -->
+            <li class="menu-item">
+              <a href="#">
+                <i class="icon icon-link"></i> 推荐阅读
+              </a>
+            </li>
+            <!-- menu divider -->
+            <li class="divider"></li>
+            <!-- menu item with badge -->
+            <li class="menu-item">
+              <div class="menu-badge">
+                <label class="label label-primary">2</label>
+              </div>
+              <a href="#">
+                <i class="icon icon-link"></i> 更新
+              </a>
+            </li>
+            <!-- menu divider -->
+            <li class="divider"></li>
+            <!-- menu item with badge -->
+            <li class="menu-item">
+              <div class="menu-badge">
+                <label class="label label-primary">2</label>
+              </div>
+              <a href="#">
+                <i class="icon icon-link"></i> 最新初订
+              </a>
+            </li>
+            <!-- menu divider -->
+            <li class="divider"></li>
+            <!-- menu item with badge -->
+            <li class="menu-item">
+              <div class="menu-badge">
+                <label class="label label-primary">2</label>
+              </div>
+              <a href="#">
+                <i class="icon icon-link"></i> 新稿
+              </a>
+            </li>
+          </ul><br>
+          <div class="divider text-center" data-content="标签云"></div>
+          <h4>标签云</h4>
+          <hr>
+          <div class="container">
+            <label class="chip">便签</label>
+            <label class="chip">便签</label>
+            <label class="chip">便签</label>
+            <label class="chip">便签</label>
+            <label class="chip">便签</label>
+              <label class="chip">便签</label>
+          </div>
+
+        </div>
+        <div class="column col-xs-9"><%= yield %></div>
+      </div>
+    </div>
+
+  </body>
+</html>
