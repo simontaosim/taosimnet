@@ -31,32 +31,43 @@
   <link rel="stylesheet" href="/spectre/spectre.min.css" />
   <link rel="stylesheet" href="/spectre/spectre-exp.min.css" />
   <link rel="stylesheet" href="/spectre/spectre-icons.min.css" />
-
+  <%=javascript_include_tag 'jquery', 'jquery' %>
 
   <title>
       道杂货－Simon在打磨博客
 
   </title>
+  <style media="screen">
+    .cover-all{
+      height: 800%;
+      width: 100%;
+      background-color: rgba(128, 128, 128, 0.31);
+      position: absolute;
+      z-index: 50;
+      display: none;
+    }
+    .main-container{
+      margin-left: 22%;
+      margin-right: 10%;
+    }
+    @media screen and (max-width: 960px){
+      .main-container{
+        margin-left: 5%;
+        margin-right: 10%;
+      }
+    }
+  </style>
 </head>
 
   <body>
+    <div class="cover-all">
+      &nbsp;
+    </div>
 
     <div class="container">
-      <header class="navbar">
-        <section class="navbar-section">
-          <a href="#" class="navbar-brand mr-10">初订</a>
-          <a href="#" class="btn btn-link">标签云</a>
-        </section>
-        <section class="navbar-section">
-          <div class="input-group input-inline">
-            <input class="form-input" type="text" placeholder="搜索" />
-            <button class="btn btn-primary input-group-btn">搜索</button>
-          </div>
-        </section>
-      </header>
       <div class="columns">
 
-        <div class="column col-3">
+        <div class="column col-1 hide-lg left-side" style="position:fixed;top:-20px;z-index:100; min-width:234px;height:100%;overflow:overlay">
           <ul class="menu">
             <!-- menu header text -->
             <li class="divider" data-content="LINKS">
@@ -100,23 +111,82 @@
                 <i class="icon icon-link"></i> 新稿
               </a>
             </li>
+            <li>
+              <h4>标签云</h4>
+              <hr>
+              <div class="container">
+                <label class="chip">便签</label>
+                <label class="chip">便签</label>
+                <label class="chip">便签</label>
+                <label class="chip">便签</label>
+                <label class="chip">便签</label>
+                  <label class="chip">便签</label>
+              </div>
+            </li>
+            <li>
+              广告位
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+            </li>
           </ul><br>
-          <div class="divider text-center" data-content="标签云"></div>
-          <h4>标签云</h4>
-          <hr>
-          <div class="container">
-            <label class="chip">便签</label>
-            <label class="chip">便签</label>
-            <label class="chip">便签</label>
-            <label class="chip">便签</label>
-            <label class="chip">便签</label>
-              <label class="chip">便签</label>
-          </div>
+
 
         </div>
-        <div class="column col-xs-9"><%= yield %></div>
+        <div class="column col-xs-11 main-container">
+          <div class="show-lg" id="responsive-menu" style="z-index:200;position: fixed;top:135px;width:100px;height:100px;">
+                <button  class="btn btn-action btn-primary btn-lx"><i class="icon icon-menu"></i></button>&nbsp;
+          </div>
+
+          <%= yield %>
+        </div>
       </div>
     </div>
+    <script type="text/javascript">
+    var leftSideShow = false;
+      $(document).ready(function(){
+        $('.cover-all').click(function(){
+          $(".left-side").css('cssText', 'position:fixed;top:-20px;display: none !important; z-index:100; min-width:234px;height:100%;overflow:overlay');
+          $('.cover-all').hide();
+          $("#responsive-menu").css('cssText', 'display: block !important;z-index:200;position:fixed;top:135px;width:100px;height:100px;');
+          leftSideShow = false;
+        });
+        $("#responsive-menu").click(function(){
+          if (leftSideShow == true) {
+            $(".left-side").css('cssText', 'position:fixed;top:-20px;display: none !important; z-index:100;min-width:234px;height:100%;overflow:overlay');
+            $('.cover-all').hide();
+            leftSideShow = false;
+            return false;
+          }else {
+            $(".left-side").css('cssText', 'position:fixed;top:-20px;display: block !important; z-index:100; min-width:234px;height:100%;overflow:overlay');
+            $('.cover-all').show();
+            $("#responsive-menu").css('cssText', 'display: none !important; z-index:100');
+            leftSideShow = true;
+            return false;
+          }
 
+
+        });
+      });
+    </script>
   </body>
 </html>

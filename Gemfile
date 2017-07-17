@@ -17,6 +17,7 @@ source 'https://rubygems.org'
 gem 'rake'
 
 # Component requirements
+gem 'bcrypt'
 gem 'erubi', '~> 1.6'
 gem 'mongoid', '>= 3.0.0'
 
