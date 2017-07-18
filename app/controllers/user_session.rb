@@ -23,6 +23,10 @@ Taosimnet::App.controllers :user_session do
     redirect_to url(:user_session, :new)
   end
 
+  post :remote_login do
+    
+  end
+
   get :new do
     render 'new'
   end

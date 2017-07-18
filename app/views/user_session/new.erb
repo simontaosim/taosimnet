@@ -1,1 +1,84 @@
-<h1>login</h1>
+<script src="/javascripts/jquery.md5.js" charset="utf-8"></script>
+<div class="" style="display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    top: 10px; ">
+    <a href="/" style="width:20%"><img src="/images/taosimico.png" alt="" ></a>
+  <h3>用户登录</h3>
+  <form class="form-horizontal form-login">
+    <div class="form-group">
+      <div class="col-3">
+        <label class="form-label" for="input-username">用户名</label>
+      </div>
+      <div class="col-9">
+        <input name="username" class="form-input" type="text" id="input-username" placeholder="用户名" />
+      </div>
+
+    </div>
+    <div class="form-group">
+      <div class="col-3">
+        <label class="form-label" for="input-password">密码</label>
+      </div>
+      <div class="col-9">
+        <input name="password" class="form-input" type="password" id="input-password" placeholder="密码" />
+      </div>
+    </div>
+    <!-- loading element -->
+    <div class="login-form-info">
+      <div class="loading"></div>
+      <div class="toast">
+        <button type="button" class="btn btn-clear float-right remove-login-info-btn"></button>
+        <span id="login-feed-back"></span>
+      </div>
+      <br>
+    </div>
+      <div class="col-６" style="display: flex;
+    justify-content: space-around;">
+        <a href="/users/new" class="btn btn-primary">注册</a>
+        <button type="submit" class="btn btn-primary">登录</button>
+      </div>
+
+
+    <!-- form structure -->
+  </form>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".remove-login-info-btn").click(function(){
+      $(".login-form-info").hide();
+    });
+    $(".login-form-info").hide();
+    $(".form-login").submit(function(event){
+      $(".login-form-info").show();
+      $(".login-form-info > .toast").hide();
+      $(".login-form-info > .loading").show();
+      var username = $(this).find("input[name='username']").val();
+      var password = $(this).find("input[name='password']").val();
+      var loginObj = {
+        username,
+        password
+      }
+      var showLoginInfo = function($html){
+        $(".login-form-info > .toast").show(function(){
+          $("#login-feed-back").html($html);
+          $(".login-form-info > .loading").hide();
+        });
+      }
+      if (username === "") {
+        showLoginInfo("用户名不得为空");
+        return false;
+      }
+      if (password === "") {
+        showLoginInfo("密码不得为空");
+        return false;
+      }
+      var criptoPassword = $.md5(password);
+      console.log(criptoPassword);
+      event.preventDefault();
+      return false;
+
+    });
+  })
+</script>
