@@ -1,6 +1,6 @@
 puts 'seeds begin'
 require 'digest/md5'
-if User.where(name: "simontaosim").count >= 0
+if User.where(name: "simontaosim").size() > 0
   puts "simontaosim已经存在"
   puts User.first.to_json;
 else
