@@ -3,6 +3,7 @@ module Taosimnet
     register Padrino::Mailer
     register Padrino::Helpers
     enable :sessions
+    enable :allow_disabled_csrf
     layout :app
     get :index do
       render 'home/index'

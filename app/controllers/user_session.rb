@@ -1,5 +1,6 @@
 Taosimnet::App.controllers :user_session do
   layout 'app'
+
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'
   #   render 'index'
@@ -21,6 +22,13 @@ Taosimnet::App.controllers :user_session do
 
   get :index do
     redirect_to url(:user_session, :new)
+  end
+
+  post :remote_login do
+    size = User.where(name: params["username"], pass: params["criptoPassword"]).size()
+    puts size;
+    size.to_json
+
   end
 
   get :new do
