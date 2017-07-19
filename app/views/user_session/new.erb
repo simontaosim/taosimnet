@@ -51,6 +51,7 @@
     });
     $(".login-form-info").hide();
     $(".form-login").submit(function(event){
+      event.preventDefault();
       $(".login-form-info").show();
       $(".login-form-info > .toast").hide();
       $(".login-form-info > .loading").show();
@@ -76,7 +77,15 @@
       }
       var criptoPassword = $.md5(password);
       console.log(criptoPassword);
-      event.preventDefault();
+      $.post("/user_session/remote_login", {criptoPassword, username}, function(data){
+        if (data !== "0") {
+          showLoginInfo("登录成功!");
+        }else{
+          $(".login-form-info > .loading").hide();
+          showLoginInfo("用户名或者密码错误!");
+        }
+      })
+
       return false;
 
     });
