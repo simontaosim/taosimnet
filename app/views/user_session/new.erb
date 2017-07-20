@@ -76,7 +76,6 @@
         return false;
       }
       var criptoPassword = $.md5(password);
-      console.log(criptoPassword);
       $.post("/user_session/remote_login", {criptoPassword, username}, function(data){
         if (data !== "0") {
           showLoginInfo("登录成功!");
