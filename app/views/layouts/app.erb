@@ -53,6 +53,10 @@
         margin-left: 5%;
         margin-right: 10%;
       }
+      .mobile-header-image{
+        float:left;display:inline-block;width: 25%;
+        height: 40%;
+      }
     }
   </style>
 </head>
@@ -67,7 +71,7 @@
 
         <div class="column col-1 hide-lg left-side" style="position:fixed;top:-20px;z-index:100; min-width:234px;height:100%;overflow:overlay">
           <ul class="menu">
-            <!-- menu header text -->
+
             <li class="divider">
             </li>
             <li  class="menu-item">
@@ -75,6 +79,17 @@
               <img src="/images/taosimlogo.png" alt="" style="width:80%;">
               </a>
 
+            </li>
+            <!-- menu header text -->
+            <li class="divider"></li>
+            <!-- menu item with badge -->
+            <li class="menu-item">
+              <div class="menu-badge">
+                <label class="label label-primary">2</label>
+              </div>
+              <a href="#">
+                <i class="icon icon-link"></i> 公告
+              </a>
             </li>
             <li class="divider" data-content="LINKS">
             </li>
@@ -88,8 +103,13 @@
             <li class="divider"></li>
             <!-- menu item -->
             <li class="menu-item">
-              <a href="/user_session/new">
-                <i class="icon icon-link"></i> 登录 | 注册
+              <a href="/users/me">
+                <i class="icon icon-link"></i>
+                <% if session[:userId].nil? %>
+                  登录
+                  <% else %>
+                    个人中心
+                <% end %>
               </a>
             </li>
             <li class="divider">
@@ -145,7 +165,38 @@
                 <label class="chip">便签</label>
                   <label class="chip">便签</label>
               </div>
+            </li>  <% if session[:userId] %>
+            <li class="divider"></li>
+            <!-- menu item -->
+            <li class="menu-item">
+              <a class="btn btn-primary" style="color:white" href="/user_session/remove">
+                退出登录
+
+              </a>
             </li>
+            <!-- menu divider -->
+            <li class="divider"></li>
+            <!-- menu item with badge -->
+            <li class="menu-item">
+              <div class="menu-badge">
+                <label class="label label-primary">2</label>
+              </div>
+              <a href="#">
+                <i class="icon icon-link"></i> 关于本站
+              </a>
+            </li>
+            <!-- menu divider -->
+            <li class="divider"></li>
+            <!-- menu item with badge -->
+            <li class="menu-item">
+              <div class="menu-badge">
+                <label class="label label-primary">2</label>
+              </div>
+              <a href="#">
+                <i class="icon icon-link"></i> 关于站长
+              </a>
+            </li>
+              <% end %>
             <li>
               广告位
               <br>

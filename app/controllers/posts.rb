@@ -1,4 +1,4 @@
-Taosimnet::App.controllers :users do
+Taosimnet::App.controllers :posts do
 
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'
@@ -18,26 +18,19 @@ Taosimnet::App.controllers :users do
   # get '/example' do
   #   'Hello world!'
   # end
-
   get :index do
+    session[:userId].to_s
 
   end
-
-  get :me do
-    if session[:userId].nil?
-      redirect_to url(:user_session, :new)
-    end
-    render 'me'
-  end
-
-
 
   get :new do
-
+    if session[:userId].nil?
+      "未登录"
+    else
+      "可以新建"
+    end
   end
 
-  post :create do
 
-  end
 
 end

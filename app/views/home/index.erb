@@ -1,14 +1,21 @@
 <div class="container">
   <div class="" style="display: flex;
-    justify-content: space-between;">
-      <img src="/images/taosimico.png" alt="" style="float:left;display:inline-block;">
+    justify-content: space-between;align-items: center;">
+      <img src="/images/taosimico.png" alt="" style="" class="mobile-header-image">
     <div class="">
 
       <h2>道杂货</h2>
       <h4>Simon在打磨博客</h4>
     </div>
     <div class="hide-lg" style="text-align:right;">
-      <a href="/user_session/new">登录|注册</a>
+      <a href="/users/me">
+        <% if session[:userId].nil? %>
+          登录
+          <% else %>
+            个人中心
+        <% end %>
+
+      </a>
       <br><br><br>
       <div class="input-group">
         <input type="text" class="form-input" placeholder="标签 内容 标题" />

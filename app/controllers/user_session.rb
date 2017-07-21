@@ -43,8 +43,10 @@ Taosimnet::App.controllers :user_session do
     render 'new'
   end
 
-  post :create do
-
+  get :remove do
+    session[:userId] = nil;
+    redirect_to url(:index)
   end
+
 
 end

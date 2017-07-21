@@ -5,7 +5,7 @@
     position: relative;
     flex-direction: column;
     top: 10px; ">
-    <a href="/" style="width:20%"><img src="/images/taosimico.png" alt="" ></a>
+    <a href="/" style="width:auto"><img src="/images/taosimico.png" alt="" ></a>
   <h3>用户登录</h3>
   <form class="form-horizontal form-login">
     <div class="form-group">
@@ -79,6 +79,7 @@
       $.post("/user_session/remote_login", {criptoPassword, username}, function(data){
         if (data !== "0") {
           showLoginInfo("登录成功!");
+          window.location.assign('/');
         }else{
           $(".login-form-info > .loading").hide();
           showLoginInfo("用户名或者密码错误!");
