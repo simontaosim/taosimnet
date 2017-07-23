@@ -24,9 +24,9 @@
 </ul>
     <div class="form-group" style="text-align:center;">
 
-        <label class="form-label" for="input-username">文章标题</label>
+        <label class="form-label" for="input-title">文章标题</label>
 
-        <input name="username" class="form-input" type="text" id="input-username" placeholder="文章标题" />
+        <input name="username" class="form-input" type="text" id="input-title" placeholder="文章标题" />
       <br>
       <h4>文章正文</h4>
 
@@ -35,7 +35,7 @@
     <!-- You can use a div tag as well. -->
     <textarea></textarea>
 
-    <button type="button" class="btn btn-primary">保存并下一步</button>
+    <button type="button" class="save-next btn btn-primary">保存并下一步</button>
     <br><br>
 
 
@@ -47,4 +47,57 @@
     <script type="text/javascript" src="/editor/js/froala_editor.pkgd.min.js"></script>
 
     <!-- Initialize the editor. -->
-    <script> $(function() { $('textarea').froalaEditor() }); </script>
+    <script>
+
+    $(function() {
+
+      var savePost = function(post, is_next){
+        $.post("/users/save_draft", {post}, function(data){
+          console.log(data);
+          if (is_next) {
+            console.log("可以下一步le");
+          }
+        })
+      }
+      $('textarea').froalaEditor();
+      var post =  {
+        post_title: "",
+        post_text: ""
+      }
+      $(".save-next").click(function(){
+        var post_text = $('textarea').froalaEditor('html.get');
+        var post_title = $("#input-title").val();
+        post.post_title = post_title;
+        post.post_text = post_text;
+        savePost(post, true);
+
+      });
+      setInterval(function(){
+        console.log("正在检测是否要保存");
+        var post_text = $('textarea').froalaEditor('html.get');
+        var post_title = $("#input-title").val();
+        post_new = {
+          post_title,
+          post_text
+        }
+        if (post_text.length <= 200) {
+          return false;
+        }
+        if (post_title === "") {
+          return false;
+        }
+        var post_text = $('textarea').froalaEditor('html.get');
+
+        if (JSON.stringify(post) == JSON.stringify(post_new)) {
+          post = post_new;
+          return false
+        }else{
+          post.post_title = post_title;
+          post.post_text = post_text;
+          savePost(post, false);
+        }
+
+
+      },3000)
+    });
+    </script>

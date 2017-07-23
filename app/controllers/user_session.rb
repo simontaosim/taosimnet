@@ -26,6 +26,7 @@ Taosimnet::App.controllers :user_session do
 
   post :remote_login do
     users = User.where(name: params["username"], pass: params["criptoPassword"])
+    puts users.to_json
     if users.size > 0
       session[:userId] =  users.first._id
       puts users.first.id

@@ -1,6 +1,6 @@
 # Connection.new takes host and port.
 
-host = 'localhost'
+host = '127.0.0.1'
 port = 27017
 
 database_name = case Padrino.env

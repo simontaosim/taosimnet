@@ -36,6 +36,10 @@ Taosimnet::App.controllers :users do
 
   end
 
+  post :save_draft do
+    puts params[:post].to_json
+  end
+
   post :create do
 
   end
