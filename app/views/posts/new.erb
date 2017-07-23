@@ -1,0 +1,50 @@
+<!-- Include external CSS. -->
+   <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+   <link rel="stylesheet" href="/stylesheets/codemirror.min.css">
+
+   <!-- Include Editor style. -->
+   <link href="/editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+   <link href="/editor/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+<h5 style="text-align: center;">新建文章</h5>
+<ul class="tab tab-block">
+  <li class="tab-item">
+    <a href="/users/me">文章</a>
+  </li>
+  <li class="tab-item active">
+    <a href="/posts/new" class="">新</a>
+  </li>
+  <li class="tab-item">
+    <a href="#">资料</a>
+  </li>
+  <li class="tab-item">
+    <a href="#">功能</a>
+  </li>
+
+</ul>
+    <div class="form-group" style="text-align:center;">
+
+        <label class="form-label" for="input-username">文章标题</label>
+
+        <input name="username" class="form-input" type="text" id="input-username" placeholder="文章标题" />
+      <br>
+      <h4>文章正文</h4>
+
+    </div>
+<!-- Create a tag that we will use as the editable area. -->
+    <!-- You can use a div tag as well. -->
+    <textarea></textarea>
+
+    <button type="button" class="btn btn-primary">保存并下一步</button>
+    <br><br>
+
+
+    <!-- Include external JS libs. -->
+    <script type="text/javascript" src="/javascripts/codemirror.min.js"></script>
+    <script type="text/javascript" src="/javascripts/xml.min.js"></script>
+
+    <!-- Include Editor JS files. -->
+    <script type="text/javascript" src="/editor/js/froala_editor.pkgd.min.js"></script>
+
+    <!-- Initialize the editor. -->
+    <script> $(function() { $('textarea').froalaEditor() }); </script>

@@ -4,6 +4,7 @@ class Role
 
   # field <name>, :type => <type>, :default => <value>
   field :name, :type => String
+  has_many :users
 
   # You can define indexes on documents using the index macro:
   # index :field <, :unique => true>

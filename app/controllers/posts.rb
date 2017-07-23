@@ -25,9 +25,9 @@ Taosimnet::App.controllers :posts do
 
   get :new do
     if session[:userId].nil?
-      "未登录"
+      redirect_to url(:user_session, :new)
     else
-      "可以新建"
+      render 'new'
     end
   end
 

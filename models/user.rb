@@ -7,6 +7,8 @@ class User
   field :pass, :type => String
   field :age, :type => Integer
   field :email, :type => String
+  has_many :posts
+  belongs_to :role
 
   # You can define indexes on documents using the index macro:
   # index :field <, :unique => true>

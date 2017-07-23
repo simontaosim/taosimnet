@@ -5,6 +5,9 @@ class Post
   # field <name>, :type => <type>, :default => <value>
   field :title, :type => String
   field :body, :type => String
+  has_and_belongs_to_many :tags
+  has_many :versions
+  belongs_to :user
 
   # You can define indexes on documents using the index macro:
   # index :field <, :unique => true>
