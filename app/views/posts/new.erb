@@ -50,20 +50,25 @@
     <script>
 
     $(function() {
-
+      var post =  {
+        post_title: "",
+        post_text: "",
+        id: ""
+      }
       var savePost = function(post, is_next){
         $.post("/users/save_draft", {post}, function(data){
-          console.log(data);
+
+          post.id = JSON.parse(data).post_id;
+
           if (is_next) {
-            console.log("可以下一步le");
+            window.location.assign("/users/tag_a_post/"
+            +JSON.parse(data).post_id
+            +"/vesion/"+JSON.parse(data).post_version);
           }
         })
       }
       $('textarea').froalaEditor();
-      var post =  {
-        post_title: "",
-        post_text: ""
-      }
+
       $(".save-next").click(function(){
         var post_text = $('textarea').froalaEditor('html.get');
         var post_title = $("#input-title").val();
