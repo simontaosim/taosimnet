@@ -21,6 +21,7 @@ Taosimnet::App.controllers :user_session do
   # end
 
   get :index do
+    @tags = Tag.order_by(:created_at => 'desc')
     redirect_to url(:user_session, :new)
   end
 
@@ -39,12 +40,14 @@ Taosimnet::App.controllers :user_session do
   end
 
   get :new do
+    @tags = Tag.order_by(:created_at => 'desc')
     @user = User.where(_id: session[:userId]).first;
     puts @user
     render 'new'
   end
 
   get :remove do
+    @tags = Tag.order_by(:created_at => 'desc')
     session[:userId] = nil;
     redirect_to url(:index)
   end

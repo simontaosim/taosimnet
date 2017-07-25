@@ -15,16 +15,16 @@
 
   <!-- Add to homescreen for Chrome on Android -->
   <meta name="mobile-web-app-capable" content="yes">
-  <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+  <link rel="icon" sizes="192x192" href="/assets/i/app-icon72x72@2x.png">
 
   <!-- Add to homescreen for Safari on iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="道杂货"/>
+  <link rel="apple-touch-icon-precomposed" href="/assets/i/app-icon72x72@2x.png">
 
   <!-- Tile icon for Win8 (144x144 + tile color) -->
-  <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileImage" content="/assets/i/app-icon72x72@2x.png">
   <meta name="msapplication-TileColor" content="#0e90d2">
   <link rel="stylesheet" href="/spectre/spectre.min.css" />
   <link rel="stylesheet" href="/spectre/spectre-exp.min.css" />
@@ -81,16 +81,15 @@
 
             </li>
             <!-- menu header text -->
-            <li class="divider"></li>
-            <!-- menu item with badge -->
-            <li class="menu-item">
+            <!-- <li class="divider"></li>
+            <!-- <li class="menu-item">
               <div class="menu-badge">
                 <label class="label label-primary">2</label>
               </div>
               <a href="#">
                 <i class="icon icon-link"></i> 公告
               </a>
-            </li>
+            </li> -->
             <li class="divider" data-content="LINKS">
             </li>
             <!-- menu item -->
@@ -125,9 +124,7 @@
             <li class="divider"></li>
             <!-- menu item with badge -->
             <li class="menu-item">
-              <div class="menu-badge">
-                <label class="label label-primary">2</label>
-              </div>
+
               <a href="#">
                 <i class="icon icon-link"></i> 更新
               </a>
@@ -136,34 +133,22 @@
             <li class="divider"></li>
             <!-- menu item with badge -->
             <li class="menu-item">
-              <div class="menu-badge">
-                <label class="label label-primary">2</label>
-              </div>
+
               <a href="#">
-                <i class="icon icon-link"></i> 最新初订
+                <i class="icon icon-link"></i> 最新
               </a>
             </li>
             <!-- menu divider -->
             <li class="divider"></li>
             <!-- menu item with badge -->
-            <li class="menu-item">
-              <div class="menu-badge">
-                <label class="label label-primary">2</label>
-              </div>
-              <a href="#">
-                <i class="icon icon-link"></i> 新稿
-              </a>
-            </li>
+
             <li>
               <h4>标签云</h4>
               <hr>
               <div class="container">
-                <label class="chip">便签</label>
-                <label class="chip">便签</label>
-                <label class="chip">便签</label>
-                <label class="chip">便签</label>
-                <label class="chip">便签</label>
-                  <label class="chip">便签</label>
+                <% @tags.each do |tag| %>
+                  <a href="/posts/tag/<%= tag.name %>" class="chip"><%= tag.name %></a>
+                <% end %>
               </div>
             </li>  <% if session[:userId] %>
             <li class="divider"></li>
@@ -197,8 +182,8 @@
               </a>
             </li>
               <% end %>
-            <li>
-              广告位
+            <li　style="word-break:break-all;">
+              广告位(本站无关)
               <br>
               <br>
               <br>

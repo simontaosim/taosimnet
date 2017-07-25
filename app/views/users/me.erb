@@ -4,7 +4,7 @@
     <a href="/users/me">文章</a>
   </li>
   <li class="tab-item">
-    <a href="/posts/new" class="">新</a>
+    <a href="/posts/new" class="">更新</a>
   </li>
   <li class="tab-item">
     <a href="/users/me/info">资料</a>
@@ -14,3 +14,66 @@
   </li>
 
 </ul>
+<br><br>
+<div class="container">
+  <% @posts.each do |post| %>
+    <div class="">
+      <div class="tile">
+        <div class="tile-icon">
+          <div class="example-tile-icon">
+            <i class="icon icon-file centered"></i>
+          </div>
+        </div>
+        <div class="tile-content" style="position:relative;float:left;width:70% !important;word-wrap: break-word;">
+          <div class="tile-title">
+          <h4 style="display:inline-block"><%= post.title %></h4><br>
+          <h5><%= post.version ?  post.version.name : "暂无版本" %></h5>
+        </div>
+          <div ><%= post.body[0,100].html_safe() %>
+            <p>  ......<a href="#">more</a></p>
+          </div>
+        </div>
+        <div class="tile-action" style="position:relative;float:right">
+          <a href="/posts/edit/<%= post.id %>" class="btn btn-primary">编辑</a><br><br>
+          <button data-id="<%= post.id %>" class="btn btn-primary delete-post-btn">删除</button>
+        </div>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>
+<ul class="pagination">
+  <li class="page-item">
+    <a href="#" disabled tabindex="-1">Previous</a>
+  </li>
+  <li class="page-item active">
+    <a href="#">1</a>
+  </li>
+  <li class="page-item">
+    <a href="#">2</a>
+  </li>
+  <li class="page-item">
+    <a href="#">3</a>
+  </li>
+  <li class="page-item">
+    <a href="#">...</a>
+  </li>
+  <li class="page-item">
+    <a href="#">12</a>
+  </li>
+  <li class="page-item">
+    <a href="#">Next</a>
+  </li>
+</ul>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".delete-post-btn").click(function(){
+
+      if (confirm("是否确认删除？")) {
+        window.location.assign("/posts/delete/"+$(this).attr("data-id"));
+      }else {
+        return false
+      }
+    })
+  })
+</script>

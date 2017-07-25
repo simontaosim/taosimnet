@@ -14,3 +14,99 @@
   </li>
 
 </ul>
+<div class="container">
+  <form class="add-tag-form">
+    <div class="input-group">
+      <span class="input-group-addon addon-lg">添加标签</span>
+      <input type="text" class="form-input input-lg" placeholder="一次输入一个">
+      <button class="btn btn-primary input-group-btn btn-lg">添加</button>
+    </div>
+    <div class="form-group" style="text-align:center;">
+      <label class="form-checkbox">
+        <input type="checkbox" />
+        <i class="form-icon"></i>是否列为推荐
+      </label>
+    </div>
+
+  </form>
+  <div class="tags-container">
+
+  </div>
+  <br>
+  <div class="" style="display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;">
+    <button class="btn btn-primary input-group-btn btn-lg publish-btn">发布</button>
+    <div class="loading"></div>
+    <button class="btn btn-primary input-group-btn btn-lg save-draft-btn">保存草稿</button>
+
+  </div>
+
+
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".loading").hide();
+    var tags = [];  var tags_html = "";
+    console.log("<%= @post.tags[0].to_json %>");
+    var promotion = false;
+    $("input[type='checkbox']").change(function(){
+      promotion = !promotion;
+      console.log(promotion);
+    })
+    $(".add-tag-form").submit(function(){
+      var tag = $(this).find("input").val();
+      if (tag == "") {
+        alert("不能空哦");
+        return false;
+      }
+
+      for (var i = 0; i < tags.length; i++) {
+        if (tags[i] == tag) {
+          alert("此标签已有");
+          $(this).find("input").val("");
+          return false
+        }
+
+
+      }
+      tags.push(tag);
+      for (var i = 0; i < tags.length; i++) {
+          tags_html+='<label class="chip">'+tags[i]+'<button class="btn btn-clear"></button></label>&nbsp;'
+
+      }
+
+
+
+      $(".tags-container").html(tags_html);
+      $(".btn.btn-clear").bind("click", function(){
+        tags.pop();
+        $(this).parent().remove();
+      })
+      tags_html = "";
+      console.log(tags);
+      $(this).find("input").val("");
+
+      return false;
+    });
+
+    $(".publish-btn").click(function(){
+      $(this).css("visibility","hidden");
+
+      $(".loading").show();
+      $.post("/posts/publish",
+      {tags, id: "<%= @post.id%>", promotion}, function(data){
+        console.log('back');
+      })
+    });
+
+    $(".save-draft-btn").click(function(){
+      $(this).css("visibility","hidden");
+      console.log(tags);
+      $(".loading").show();
+    });
+
+
+  })
+</script>

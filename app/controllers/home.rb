@@ -21,6 +21,8 @@ Taosimnet::App.controllers :home do
   # end
 
   get :index do
+    @tags = Tag.order_by(:created_at => 'desc')
+    @versions= Version.all
     render 'index'
   end
 
