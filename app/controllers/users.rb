@@ -70,9 +70,9 @@ Taosimnet::App.controllers :users do
 
   end
 
-  get :posts, :map => '/tag_a_post/:post_id/version/:id' do
-    # url_for(:account, :name => "John", :id => 5) => "/the/accounts/John/and/5"
-    # access params[:name] and params[:id]
+  get :tag_post, :map => '/tag_a_post/:post_id/version/:id' do
+      @post = Post.find(params[:post_id])
+      render "/posts/tag_post"
   end
   get :account, :map => '/the/accounts/:name/and/:id' do
      # url_for(:account, :name => "John", :id => 5) => "/the/accounts/John/and/5"
@@ -81,6 +81,15 @@ Taosimnet::App.controllers :users do
 
   post :create do
 
+  end
+
+  get  :show, :with => :id do
+    render "/posts/show"
+  end
+
+  get :preview, :with => :id do
+    @post = Post.find(params[:id])
+    render "/posts/preview"
   end
 
 end

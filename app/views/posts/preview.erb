@@ -1,0 +1,8 @@
+<div class="" style="display: flex;">
+  <h3>预览文章</h3>
+  <button type="button" class="btn btn-primary" name="button" onclick="window.history.go(-1)">返回</button>
+</div>
+<h3><%= @post.title %></h3>
+<div class="">
+  <%= @post.body.html_safe() %>
+</div>

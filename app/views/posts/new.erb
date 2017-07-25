@@ -34,8 +34,11 @@
 <!-- Create a tag that we will use as the editable area. -->
     <!-- You can use a div tag as well. -->
     <textarea></textarea>
+    <div class="">
+      <button type="button" class="save-next btn btn-primary">保存并下一步</button>
+      <a type="button" class="post-preview btn btn-primary">预览</a>
+    </div>
 
-    <button type="button" class="save-next btn btn-primary">保存并下一步</button>
     <br><br>
 
 
@@ -50,20 +53,22 @@
     <script>
 
     $(function() {
+      $(".post-preview").hide();
       var post =  {
         post_title: "",
         post_text: "",
         id: ""
       }
+
       var savePost = function(post, is_next){
         $.post("/users/save_draft", {post}, function(data){
 
           post.id = JSON.parse(data).post_id;
 
           if (is_next) {
-            window.location.assign("/users/tag_a_post/"
+            window.location.assign("/tag_a_post/"
             +JSON.parse(data).post_id
-            +"/vesion/"+JSON.parse(data).post_version);
+            +"/version/"+JSON.parse(data).post_version);
           }
         })
       }
@@ -79,6 +84,12 @@
       });
       setInterval(function(){
         console.log("正在检测是否要保存");
+        if (post.id != "") {
+          $(".post-preview").show(function(){
+            $(this).attr("href", "/users/preview/"+post.id);
+          });
+
+        }
         var post_text = $('textarea').froalaEditor('html.get');
         var post_title = $("#input-title").val();
         post_new = {
