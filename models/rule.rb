@@ -5,7 +5,7 @@ class Rule
   # field <name>, :type => <type>, :default => <value>
   field :name, :type => String
   field :brief, :type => String
-  field :type, :type => String
+  field :typeName, :type => String
   field :description, :type => String
   has_many :events
 

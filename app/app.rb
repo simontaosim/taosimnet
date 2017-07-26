@@ -7,7 +7,7 @@ module Taosimnet
     layout :app
     get :index do
       @tags = Tag.order_by(:created_at => 'desc')
-      @versions= Version.order_by(:created_at => 'desc')
+      @versions= Version.order_by(:updated_at => 'desc')
       render 'home/index'
     end
     ##

@@ -22,7 +22,7 @@ Taosimnet::App.controllers :home do
 
   get :index do
     @tags = Tag.order_by(:created_at => 'desc')
-    @versions= Version.all
+    @versions= Version.order_by(:updated_at => 'desc')
     render 'index'
   end
 

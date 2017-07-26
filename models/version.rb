@@ -6,9 +6,9 @@ class Version
   field :name, :type => String
   field :basic_post, :type => String
   field :status, :type => String
-  field :number, :type => Integer
+  field :count, :type => Integer
   field :promotion, :type => Boolean
-  field :support, :type => Integer
+  field :wish_write, :type => Integer
   belongs_to :post
 
 
