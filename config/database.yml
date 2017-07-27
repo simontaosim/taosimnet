@@ -1,0 +1,22 @@
+development:
+  clients: #Replace clients with sessions to work with Mongoid version 3.x or 4.x
+    default:
+      database: taosimnet_development
+      hosts:
+        - localhost:27017
+
+production:
+  clients: #Replace clients with sessions to work with Mongoid version 3.x or 4.x
+    default:
+      database: taosimnet_production
+      username: simontaosim
+      password: "786043104Xsq!519"
+      hosts:
+        - 45.77.20.138:27017
+
+test:
+  clients: #Replace clients with sessions to work with Mongoid version 3.x or 4.x
+    default:
+      database: taosimnet_test
+      hosts:
+        - localhost:27017

@@ -1,6 +1,9 @@
 <script src="/javascripts/moment.js" charset="utf-8"></script>
+
 <script type="text/javascript">
-  moment.locale('zh-cn'); 
+  moment.locale('zh-cn');
+  var fingerprint = new Fingerprint().get();
+  console.log(fingerprint);
 </script>
 <div class="container">
   <div class="" style="display: flex;
@@ -51,17 +54,23 @@
                       <div class="tile-content">
                         <p class="tile-subtitle">
                           <script type="text/javascript">
-                            var date_update = "<%=version.post.updated_at.to_s %>";
+                            var date_update = "<%=version.post ? version.post.updated_at.to_s : "" %>";
                             document.write(moment(date_update).fromNow());
                           </script>
                         </p>
-                        <p class="tile-title"><%=version.post.title%></p>
+                        <p class="tile-title"><%=version.post ? version.post.title : ""%></p>
                         <p class="tile-title"><%=version.name%></p>
                         <p class="tile-title"><a href="components.html#steps">Steps</a>: progress indicators of a sequence of task steps</p>
                         <p class="tile-title"><a href="components.html#tiles">Tiles</a>: repeatable or embeddable information blocks</p>
                       </div>
                       <div class="tile-action">
-                        <button class="btn">开始阅读</button>
+                          <% if version.status === "draft" %>
+                          <span id="<%= version.id %>support-number"><%=version.wish_write ?  version.wish_write : "0" %></span>
+                          <button data-id="<%= version.id %>" class="btn support-btn">支持</button>
+
+                          <% else %>
+                          <button data-id="<%= version.post.id %>" class="btn view-btn">开始阅读</button>
+                        <% end %>
                       </div>
                     </div>
                   </div>
@@ -76,3 +85,17 @@
 
 
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".support-btn").click(function(){
+      var id = $(this).attr('data-id');
+      $.get('version/support/'+id+'/'+fingerprint, function(data){
+        if (data == "already") {
+          alert("您只能支持一篇草稿的进行")
+        }else{
+          $("#"+id+"support-number").html(data);
+        }
+      })
+    });
+  })
+</script>

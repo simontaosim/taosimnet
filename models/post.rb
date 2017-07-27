@@ -28,9 +28,9 @@ class Post
     # 新版本指向原来的文章
     version.basic_post = post.id
     # 初始版本号为ｘ
-    version.number = post.max_version
+    version.count = post.max_version
     # 名称为第Ｘ版本
-    version.name = "发布第"+version.number.to_s+"版"
+    version.name = "发布第"+version.count.to_s+"版"
     # 说明新版本是否推荐
     version.promotion = is_promotion
 

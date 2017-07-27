@@ -20,6 +20,7 @@ gem 'rake'
 gem 'bcrypt'
 gem 'erubi', '~> 1.6'
 gem 'mongoid', '>= 3.0.0'
+gem 'mongoid_search'
 
 # Test requirements
 gem 'rspec', :group => 'test'

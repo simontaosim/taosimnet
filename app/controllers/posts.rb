@@ -34,6 +34,28 @@ Taosimnet::App.controllers :posts do
     @tags = Tag.order_by(:created_at => 'desc')
   end
 
+  get :promotions do
+    @tags = Tag.order_by(:created_at => 'desc')
+    @versions = Version.where(promotion: true).order_by(:updated_at => 'desc')
+    @order = "promotions"
+    render 'cards'
+
+  end
+  get :last_update do
+    @tags = Tag.order_by(:created_at => 'desc')
+    @versions = Version.where(promotion: true).order_by(:updated_at => 'desc')
+    @order = "last_update"
+    render 'cards'
+
+  end
+  get :last_create do
+    @tags = Tag.order_by(:created_at => 'desc')
+    @versions = Version.where(promotion: true).order_by(:created_at => 'desc')
+    @order = "last_create"
+    render 'cards'
+
+  end
+
   # get :sample, :map => '/sample/url', :provides => [:any, :js] do
   #   case content_type
   #     when :js then ...
@@ -72,7 +94,7 @@ Taosimnet::App.controllers :posts do
 
   get :new do
     @tags = Tag.order_by(:created_at => 'desc')
-    
+
     if session[:userId].nil?
       redirect_to url(:user_session, :new)
     else

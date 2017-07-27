@@ -11,6 +11,26 @@ class Version
   field :wish_write, :type => Integer
   belongs_to :post
 
+  def self.support(id, finger)
+    version = Version.find(id)
+    wish_write = version.wish_write
+    if wish_write.nil?
+      wish_write = 0
+      version.wish_write = 0
+    end
+    device = Device.where(finger: finger).first
+    if device.nil?
+      device = Device.new
+      device.finger = finger
+      device.save
+      version.wish_write = wish_write+1
+      version.save
+    else
+      return "already"
+    end
+    version.wish_write.to_s
+  end
+
 
   # You can define indexes on documents using the index macro:
   # index :field <, :unique => true>

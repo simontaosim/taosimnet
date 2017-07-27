@@ -29,7 +29,8 @@ Taosimnet::App.controllers :users do
     if session[:userId].nil?
       redirect_to url(:user_session, :new)
     end
-    @posts = Post.order_by(:created_at => 'desc')
+    user = User.find(session[:userId])
+    @posts = Post.where(user: user).order_by(:created_at => 'desc')
 
     render 'me'
   end
@@ -38,6 +39,18 @@ Taosimnet::App.controllers :users do
 
   get :new do
     @tags = Tag.order_by(:created_at => 'desc')
+  end
+
+  post :save_edit do
+    post = Post.find(params[:post][:id])
+    post.title = params[:post][:post_title]
+    post.body = params[:post][:post_text]
+    post.save
+    result = {
+      post_id: post.id.to_s,
+      post_version: post.version.id.to_s
+    }
+    result.to_json
   end
 
   post :save_draft do

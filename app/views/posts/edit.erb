@@ -61,7 +61,7 @@
       }
 
       var savePost = function(post, is_next){
-        $.post("/users/save_draft", {post}, function(data){
+        $.post("/users/save_edit", {post}, function(data){
 
           post.id = JSON.parse(data).post_id;
 

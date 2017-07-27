@@ -57,4 +57,4 @@ end
 Padrino.after_load do
 end
 
-Padrino.load!
+Mongoid.load!(File.join(Padrino.root, 'config', 'database.yml'), Padrino.env)
