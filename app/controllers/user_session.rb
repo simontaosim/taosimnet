@@ -49,7 +49,7 @@ Taosimnet::App.controllers :user_session do
   get :remove do
     @tags = Tag.order_by(:created_at => 'desc')
     session[:userId] = nil;
-    redirect_to url(:index)
+    redirect_to url("/")
   end
 
 

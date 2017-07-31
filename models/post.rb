@@ -43,14 +43,21 @@ class Post
     new_post.tags = post.tags
     new_post.user = user
     tags = []
+    posts = []
     tags_arr.each do |tag|
       puts tag
-      @tag = Tag.new
-      @tag.name = tag
-      @tag.posts.push(new_post)
+      @tag = Tag.where(name: tag).first
       puts @tag.to_json
-      @tag.save
+      if @tag.nil?
+        @tag = Tag.new
+      end
+      @tag.name = tag
+      posts = @tag.posts
+      posts.push(new_post)
+      @tag.posts = posts
+      @tag.save!
       tags.push(@tag)
+      puts @tag.to_json
     end
     new_post.tags = tags
     puts new_post.to_json

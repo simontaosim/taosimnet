@@ -1,16 +1,35 @@
-<h5 style="text-align: center;">您的文章</h5>
-<ul class="tab tab-block">
-  <li class="tab-item">
-    <a href="/users/me">文章</a>
-  </li>
-  <li class="tab-item active">
-    <a href="/posts/new" class="">新</a>
-  </li>
-  <li class="tab-item">
-    <a href="#">资料</a>
-  </li>
-  <li class="tab-item">
-    <a href="#">功能</a>
-  </li>
+<style media="screen">
+  .article-card{
+    min-width: 215px;
+    width: 25%;
+    padding: 12px;
+  }
+</style>
+<h3 style="text-align: center;">标签为＂<%=@tag.name%>＂的文章</h3>
+<div class="container"style="display: flex;
+    align-items: center;
+    align-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-left: 30px;">
+<% @posts.each do |post| %>
+  <div class="card article-card">
+    <div class="card-image">
+      <img src="/images/random<%=rand(1..13)%>.jpg" class="img-responsive" />
+    </div>
+    <div class="card-header">
+      <h4 class="card-title"><%= post.title %></h4>
+      <h6 class="card-subtitle"><%= post.version.name %></h6>
+    </div>
+    <div class="card-body" style="word-break: break-all;">
+      <%= post.body[0,100].html_safe() %>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary">阅读</button>
+    </div>
+  </div>
 
-</ul>
+<% end %>
+
+</div>

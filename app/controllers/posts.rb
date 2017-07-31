@@ -43,17 +43,24 @@ Taosimnet::App.controllers :posts do
   end
   get :last_update do
     @tags = Tag.order_by(:created_at => 'desc')
-    @versions = Version.where(promotion: true).order_by(:updated_at => 'desc')
+    @versions = Version.where(promotion: false).order_by(:updated_at => 'desc')
     @order = "last_update"
     render 'cards'
 
   end
   get :last_create do
     @tags = Tag.order_by(:created_at => 'desc')
-    @versions = Version.where(promotion: true).order_by(:created_at => 'desc')
+    @versions = Version.where(promotion: false).order_by(:created_at => 'desc')
     @order = "last_create"
     render 'cards'
 
+  end
+
+  get :tag, :with => :name do
+    @tags =  Tag.order_by(:created_at => 'desc')
+    @tag = Tag.where(name: params[:name]).first
+    @posts = @tag.posts
+    render "index"
   end
 
   # get :sample, :map => '/sample/url', :provides => [:any, :js] do

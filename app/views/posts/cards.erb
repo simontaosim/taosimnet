@@ -1,3 +1,34 @@
-<div class="container">
-  
+<style media="screen">
+  .article-card{
+    min-width: 215px;
+    width: 25%;
+    padding: 12px;
+  }
+</style>
+<div class="container"style="display: flex;
+    align-items: center;
+    align-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-left: 30px;">
+<% @versions.each do |version| %>
+  <div class="card article-card">
+    <div class="card-image">
+      <img src="/images/random<%=rand(1..13)%>.jpg" class="img-responsive" />
+    </div>
+    <div class="card-header">
+      <h4 class="card-title"><%= version.post.title %></h4>
+      <h6 class="card-subtitle"><%= version.name %></h6>
+    </div>
+    <div class="card-body" style="word-break: break-all;">
+      <%= version.post.body[0,100].html_safe() %>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary">阅读</button>
+    </div>
+  </div>
+
+<% end %>
+
 </div>

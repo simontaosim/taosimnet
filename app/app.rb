@@ -5,7 +5,9 @@ module Taosimnet
     enable :sessions
     enable :allow_disabled_csrf
     layout :app
+
     get :index do
+
       @tags = Tag.order_by(:created_at => 'desc')
       @versions= Version.order_by(:updated_at => 'desc')
       render 'home/index'
