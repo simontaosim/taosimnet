@@ -30,5 +30,45 @@
   </div>
 
 <% end %>
+<br><br>
 
 </div>
+<ul class="pagination">
+
+  <%if @page > 1 and @page > 2%>
+  <li class="page-item">
+    <a href="/posts/<%=@order+'/'+(@page-1).to_s%>">上一页</a>
+  </li>
+  <li class="page-item">
+    <a href="/posts/<%=@order+'/'+(@page-2).to_s%>"><%=@page-2%></a>
+  </li>
+  <li class="page-item">
+    <a href="/posts/<%=@order+'/'+(@page-1).to_s%>"><%=@page-1%></a>
+  </li>
+
+
+  <% end %>
+  <%if @page > 1 and @page <=2 %>
+  <li class="page-item">
+    <a href="/posts/<%=@order+'/'+(@page-1).to_s%>">上一页</a>
+  </li>
+  <li class="page-item">
+    <a href="/posts/<%=@order+'/'+(@page-1).to_s%>"><%=@page-1%></a>
+  </li>
+
+
+  <% end %>
+
+  <li class="page-item active">
+    <a href="/posts/<%=@order+'/'+@page.to_s%>"><%=@page%></a>
+  </li>
+  <li class="page-item">
+    <a href="/posts/<%=@order+'/'+(@page+1).to_s%>"><%=(@page+1).to_s%></a>
+  </li>
+  <li class="page-item">
+    <a href="/posts/<%=@order+'/'+(@page+2).to_s%>"><%=(@page+2).to_s%></a>
+  </li>
+  <li class="page-item">
+    <a href="/posts/<%=@order+'/'+(@page+1).to_s%>">下一页</a>
+  </li>
+</ul>

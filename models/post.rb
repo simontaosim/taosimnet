@@ -43,26 +43,28 @@ class Post
     new_post.tags = post.tags
     new_post.user = user
     tags = []
-    posts = []
+
     tags_arr.each do |tag|
-      puts tag
       @tag = Tag.where(name: tag).first
       puts @tag.to_json
       if @tag.nil?
+        puts @tag
         @tag = Tag.new
+        @tag.name = tag
+        @tag.save!
       end
-      @tag.name = tag
-      posts = @tag.posts
-      posts.push(new_post)
-      @tag.posts = posts
-      @tag.save!
       tags.push(@tag)
-      puts @tag.to_json
     end
+
     new_post.tags = tags
-    puts new_post.to_json
     new_post.save!
+    # puts tags.to_json
     # 新版本属于新文章
+    new_post.tags.each do |tag|
+      post_ids = tag.post_ids
+      post_ids.push(new_post.id)
+      tag.update_attribute(:post_ids, post_ids)
+    end
     version.post = new_post
 
 

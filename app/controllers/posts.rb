@@ -35,22 +35,49 @@ Taosimnet::App.controllers :posts do
   end
 
   get :promotions do
+    @page = 1
     @tags = Tag.order_by(:created_at => 'desc')
-    @versions = Version.where(promotion: true).order_by(:updated_at => 'desc')
+    @versions = Version.where(promotion: true).order_by(:updated_at => 'desc').limit(8)
+    @order = "promotions"
+    render 'cards'
+
+  end
+  get :promotions, :with => :page do
+    @page = params[:page].to_i
+    @tags = Tag.order_by(:created_at => 'desc')
+    @versions = Version.where(promotion: true).order_by(:updated_at => 'desc').limit(8).skip(8*(params[:page].to_i-1))
     @order = "promotions"
     render 'cards'
 
   end
   get :last_update do
+    @page = 1
     @tags = Tag.order_by(:created_at => 'desc')
-    @versions = Version.where(promotion: false).order_by(:updated_at => 'desc')
+    @versions = Version.order_by(:updated_at => 'desc').limit(8)
+    @order = "last_update"
+    render 'cards'
+
+  end
+  get :last_update, :with => :page do
+    @page = params[:page].to_i
+    @tags = Tag.order_by(:created_at => 'desc')
+    @versions = Version.order_by(:updated_at => 'desc').limit(8).skip(8*(params[:page].to_i-1))
     @order = "last_update"
     render 'cards'
 
   end
   get :last_create do
+    @page = 1
     @tags = Tag.order_by(:created_at => 'desc')
-    @versions = Version.where(promotion: false).order_by(:created_at => 'desc')
+    @versions = Version.order_by(:created_at => 'desc').limit(8)
+    @order = "last_create"
+    render 'cards'
+
+  end
+  get :last_create, :with => :page do
+    @page = params[:page].to_i
+    @tags = Tag.order_by(:created_at => 'desc')
+    @versions = Version.order_by(:created_at => 'desc').limit(8).skip(8*(params[:page].to_i-1))
     @order = "last_create"
     render 'cards'
 
@@ -59,7 +86,19 @@ Taosimnet::App.controllers :posts do
   get :tag, :with => :name do
     @tags =  Tag.order_by(:created_at => 'desc')
     @tag = Tag.where(name: params[:name]).first
-    @posts = @tag.posts
+
+    if params[:page]
+      @page = params[:page].to_i
+    else
+      @page = 1
+    end
+    @posts = @tag.posts.limit(8).skip(8*(@page-1))
+    if @posts.nil?
+      @posts = []
+    end
+    @order = "tag"
+
+
     render "index"
   end
 
