@@ -9,7 +9,11 @@ module Taosimnet
     get :index do
 
       @tags = Tag.order_by(:created_at => 'desc')
-      @versions= Version.order_by(:updated_at => 'desc')
+      @page = 1
+      if params[:page]
+        @page = params[:page].to_i
+      end
+      @versions= Version.order_by(:updated_at => 'desc').order_by(:updated_at => 'desc').limit(8).skip(8*(@page-1))
       render 'home/index'
     end
     ##

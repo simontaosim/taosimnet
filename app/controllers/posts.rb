@@ -11,6 +11,13 @@ Taosimnet::App.controllers :posts do
     render 'index'
   end
 
+  get :read, :with => :id do
+    @tags = Tag.order_by(:created_at => 'desc')
+    @post = Post.find(params[:id])
+    render 'read'
+
+  end
+
   get :delete, :with => :id do
     @tags = Tag.order_by(:created_at => 'desc')
     if session[:userId].nil?
@@ -92,7 +99,7 @@ Taosimnet::App.controllers :posts do
     else
       @page = 1
     end
-    @posts = @tag.posts.limit(8).skip(8*(@page-1))
+    @posts = @tag.posts.order_by(:created_at => 'desc').limit(8).skip(8*(@page-1))
     if @posts.nil?
       @posts = []
     end

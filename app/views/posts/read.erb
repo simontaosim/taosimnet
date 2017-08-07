@@ -1,0 +1,16 @@
+<div class="container">
+  <h3><%= @post.title %></h3>
+  <hr><br>
+  <div class="tags"><span>标签：</span>
+
+    <% @post.tags.each do |tag| %>
+      <a href="/posts/tag/<%= tag.name %>" class="chip"><%= tag.name %></a>
+    <% end %>
+  </div><br>
+  <div class="body" style="word-break: break-all;">
+    <%= @post.body.html_safe()%>
+  </div>
+  <div class="adv">
+
+  </div>
+</div>

@@ -69,7 +69,7 @@
                           <button data-id="<%= version.id %>" class="btn support-btn">支持</button>
 
                           <% else %>
-                          <button data-id="<%= version.post.id %>" class="btn view-btn">开始阅读</button>
+                          <a href="/posts/read/<%= version.post.id %>" data-id="<%= version.post.id %>" class="btn view-btn">开始阅读</a>
                         <% end %>
                       </div>
                     </div>
@@ -85,6 +85,46 @@
 
 
 </div>
+<br><br>
+<ul class="pagination">
+
+  <%if @page > 1 and @page > 2%>
+  <li class="page-item">
+    <a href="?page=<%=(@page-1).to_s%>">上一页</a>
+  </li>
+  <li class="page-item">
+    <a href="?page=<%=(@page-2).to_s%>"><%=@page-2%></a>
+  </li>
+  <li class="page-item">
+    <a href="?page=<%=(@page-1).to_s%>"><%=@page-1%></a>
+  </li>
+
+
+  <% end %>
+  <%if @page > 1 and @page <=2 %>
+  <li class="page-item">
+    <a href="?page=<%=(@page-1).to_s%>">上一页</a>
+  </li>
+  <li class="page-item">
+    <a href="?page=<%=(@page-1).to_s%>"><%=@page-1%></a>
+  </li>
+
+
+  <% end %>
+
+  <li class="page-item active">
+    <a href="?page=<%=@page.to_s%>"><%=@page%></a>
+  </li>
+  <li class="page-item">
+    <a href="?page=<%=(@page+1).to_s%>"><%=(@page+1).to_s%></a>
+  </li>
+  <li class="page-item">
+    <a href="?page=<%=(@page+2).to_s%>"><%=(@page+2).to_s%></a>
+  </li>
+  <li class="page-item">
+    <a href="?page=<%=(@page+1).to_s%>">下一页</a>
+  </li>
+</ul>
 <script type="text/javascript">
   $(document).ready(function(){
     $(".support-btn").click(function(){
