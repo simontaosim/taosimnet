@@ -10,7 +10,7 @@ production:
     default:
       database: test
       username: myTester
-      password: "abc123"
+      password: "xyz123"
       hosts:
         - 45.77.20.138:27017
 
