@@ -1,5 +1,9 @@
 puts 'seeds begin'
 require 'digest/md5'
+require File.expand_path(File.join(*%w[ models user ]))
+require File.expand_path(File.join(*%w[ models role ]))
+require File.expand_path(File.join(*%w[ models post ]))
+# /home/simon/taosimnet/models
 
 if User.where(name: "simontaosim").size() > 0
   puts "simontaosim已经存在"
