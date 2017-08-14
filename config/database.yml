@@ -8,9 +8,9 @@ development:
 production:
   clients: #Replace clients with sessions to work with Mongoid version 3.x or 4.x
     default:
-      database: taosimnet_production
-      username: simontaosim
-      password: "786043104Xsq!519"
+      database: test
+      username: myTester
+      password: "abc123"
       hosts:
         - 45.77.20.138:27017
 
