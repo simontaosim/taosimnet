@@ -6,7 +6,7 @@ module Taosimnet
     enable :allow_disabled_csrf
     layout :app
 
-    get :index do
+    get :index, :map => '/' do
 
       @tags = Tag.order_by(:created_at => 'desc')
       @page = 1
